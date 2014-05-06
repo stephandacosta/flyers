@@ -64,28 +64,16 @@
    <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/component.js"></script>
      <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/modules.v1.js"></script>
     <script src="//vg-qaassets.s3.amazonaws.com/static/campaign/external/js/sentimenthub.v1.js"></script>
-
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.js"></script>
     <script type="text/javascript" src="js/jquery.windy.js"></script>
-    <script src="js/flyers.js"></script>
-    <script>
-        sentimentHub = new VGSentimentHub(campaignUid, {
-            VGVideo:    { count: 25 },
-            Photo:      { count: 20 },
-            Twitter:    { count: 20 },
-            Instagram:  { count: 20 },
-            Youtube:    { count: 30 }
-        });
-    
-        $(function(){
-            Flyers.init($('#flyersDiv'));
-        });
-    </script>
+    <script src="js/app.js"></script>
+    <script src="modules/flyers/flyers.js"></script>
 </head>
 
-<body>
+<body ng-app="flyersDemo">
 
-    <h1> Flyers </h1>
-      <div id="flyersDiv" class="flyers">
+    <h1>Flyers</h1>
+    <flyers data="flyers"></flyer>
     </div>
 
 </body>

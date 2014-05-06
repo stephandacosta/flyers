@@ -1,0 +1,11 @@
+<ul id="wi-el" class="wi-container" ng-controller="flyersCtrl" >
+  <li ng-repeat="flyer in flyers">
+    <img src="{{ flyer.image }}">
+<!--     <h4>{{ flyer.contribName }}</h4>
+    <span class='info'>{{ flyer.textHtml }}</span>
+ -->  </li>
+</ul>
+<nav>
+  <span id="nav-prev" ng-click="prev">prev</span>
+  <span id="nav-next" ng-click="next">next</span>
+</nav>

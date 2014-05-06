@@ -61,7 +61,7 @@ var Flyers = {
 
     var $imgList = $('<ul id="wi-el" class="wi-container"></ul>');
     Flyers.$container.append($imgList);
-
+    
     for (var i = 0 ; i < data.length ; i++){
       var $imgItem = $('<li></li>').css("height","100%");
       var photo = data[i].image || data[i].thumb || data[i].profilePic;

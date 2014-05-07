@@ -142,8 +142,8 @@ ul.wi-container li.wi-move {
 #flyersDiv nav {
     position: relative;
     height:10%;
-    width: 96px;
-    margin: 15px auto 15px auto;
+    /*width: 96px;*/
+    margin: 30px 10px 5px 10px;
 }
 
 #flyersDiv nav span {
@@ -151,7 +151,7 @@ ul.wi-container li.wi-move {
     height: 40px;
     margin: 0 4px;
     float: left;
-    background: url(../img/nav.png) no-repeat 100% 0;
+/*    background: url(../img/nav.png) no-repeat 100% 0;*/
     text-indent: -9000px;
     cursor: pointer;
     border-radius: 50%;
@@ -162,6 +162,18 @@ ul.wi-container li.wi-move {
     -ms-user-select: none;
     user-select: none;
 }
+
+#flyersDiv #nav-prev{
+  position: absolute;
+  left: 0;
+}
+
+#flyersDiv #nav-next{
+  position: absolute;
+  right: 0;
+}
+
+
 
 #flyersDiv nav span:first-child {
     background-position: 0 0;
@@ -176,7 +188,8 @@ ul.wi-container li.wi-move {
     background-position: 0 2px;
 }
 
-@media (min-width: 400px) {
+
+@media only screen and (min-width: 480px) {
   #flyersDiv {
     max-width:400px;
     height:600px;

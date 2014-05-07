@@ -52,7 +52,6 @@ var Flyers = {
   // draw the items as desired
   drawItem: function(network, item){
 
-
   },
 
 
@@ -60,88 +59,76 @@ var Flyers = {
     console.log('flyers function');
 
     var $imgList = $('<ul id="wi-el" class="wi-container"></ul>');
-    Flyers.$container.append($imgList);
-
     for (var i = 0 ; i < data.length ; i++){
       var $imgItem = $('<li></li>').css("height","100%");
       var photo = data[i].image || data[i].thumb || data[i].profilePic;
       var $img = $("<img />").attr({src: photo});
       $imgItem.append($img);
       $imgItem.append($("<h4>" + data[i].contribName + "</h4>"));
-      $imgItem.append($("<span></span>").html(data[i].textHtml)
-      // .css("white-space","nowrap")
-      // .css("width", "100%")  
-          .addClass("info")
-      // this needs to be dynamic
-      // .css("overflow", "hidden")
-      // .css("text-overflow", "ellipsis"));
-);
+      $imgItem.append($("<span></span>")
+      .html(data[i].textHtml)
+      .addClass("info"));
       $imgList.append($imgItem);
     }
+    Flyers.$container.append($imgList);
+
     $navig = $("<nav>");
     Flyers.$container.append($navig);
     $navig.append('<span id="nav-prev">prev</span>');
     $navig.append('<span id="nav-next">next</span>');
 
 
-// <li><img src="images/demo1/1.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>
+    var $el = $( '#wi-el' ),
+      windy = $el.windy(),
+      allownavnext = false,
+      allownavprev = false;
 
-        var $el = $( '#wi-el' ),
-          windy = $el.windy(),
-          allownavnext = false,
-          allownavprev = false;
+    $( '#nav-prev' ).on( 'mousedown', function( event ) {
+      allownavprev = true;
+      navprev();
+    })
+    .on( 'mouseup mouseleave', function( event ) {
+      allownavprev = false;
+    });
 
-        $( '#nav-prev' ).on( 'mousedown', function( event ) {
+    $( '#nav-next' ).on( 'mousedown', function( event ) {
+      allownavnext = true;
+      navnext();
+    })
+    .on( 'mouseup mouseleave', function( event ) {
+      allownavnext = false;
+    });
 
-          allownavprev = true;
-          navprev();
-        
-        } ).on( 'mouseup mouseleave', function( event ) {
-
-          allownavprev = false;
-        
-        } );
-
-        $( '#nav-next' ).on( 'mousedown', function( event ) {
-
-          allownavnext = true;
+    function navnext() {
+      if( allownavnext ) {
+        windy.next();
+        setTimeout( function() {  
           navnext();
-        
-        } ).on( 'mouseup mouseleave', function( event ) {
+        }, 150 );
+      }
+    }
+    
+    function navprev() {
+      if( allownavprev ) {
+        windy.prev();
+        setTimeout( function() {  
+          navprev();
+        }, 150 );
+      }
+    }
 
-          allownavnext = false;
-        
-        } );
+    /* example to add items
+    setTimeout(function(){
+      
+      $el.prepend('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
 
-        function navnext() {
-          if( allownavnext ) {
-            windy.next();
-            setTimeout( function() {  
-              navnext();
-            }, 150 );
-          }
-        }
-        
-        function navprev() {
-          if( allownavprev ) {
-            windy.prev();
-            setTimeout( function() {  
-              navprev();
-            }, 150 );
-          }
-        }
-        /* example to add items
-        setTimeout(function(){
-          
-          $el.prepend('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
+      // or:
+      // $el.append('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
+      
+      windy.update();
 
-          // or:
-          // $el.append('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
-          
-          windy.update();
-
-        },2000)
-        */
+    },2000)
+    */
 
 
   }

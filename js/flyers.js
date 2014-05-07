@@ -57,31 +57,44 @@ var Flyers = {
 
   drawFlyers : function (data){
     console.log('flyers function');
-
+    
     var $imgList = $('<ul id="wi-el" class="wi-container"></ul>');
+
     for (var i = 0 ; i < data.length ; i++){
+
       var $imgItem = $('<li></li>').css("height","100%");
+
+      // add image to list item
       var photo = data[i].image || data[i].thumb || data[i].profilePic;
       var $img = $("<img />").attr({src: photo});
       $imgItem.append($img);
-      $imgItem.append($("<h4>" + data[i].contribName + "</h4>"));
-      $imgItem.append($("<span></span>")
-      .html(data[i].textHtml)
-      .addClass("info"));
+
+      // add contributor name to list item
+      $imgItem.append($('<h4>' + data[i].contribName + '</h4>'));
+
+      // add text to list item
+      $imgItem.append($('<div class="info text"></div>')
+      .append(data[i].textHtml));
+
+      // add list item to unsorted list
       $imgList.append($imgItem);
+
     }
+
+    // add list to container
     Flyers.$container.append($imgList);
 
+    // add navigation buttons to container
     $navig = $("<nav>");
     Flyers.$container.append($navig);
-    $navig.append('<span id="nav-prev">prev</span>');
-    $navig.append('<span id="nav-next">next</span>');
+    $navig.append('<div id="nav-prev">prev</div>');
+    $navig.append('<div id="nav-next">next</div>');
 
 
     var $el = $( '#wi-el' ),
-      windy = $el.windy(),
-      allownavnext = false,
-      allownavprev = false;
+    windy = $el.windy(),
+    allownavnext = false,
+    allownavprev = false;
 
     $( '#nav-prev' ).on( 'mousedown', function( event ) {
       allownavprev = true;

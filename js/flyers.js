@@ -90,9 +90,28 @@ var Flyers = {
     $navig.append('<div id="nav-prev">prev</div>');
     $navig.append('<div id="nav-next">next</div>');
 
+    Flyers.setNavigation($( '#wi-el' ));
 
-    var $el = $( '#wi-el' ),
-    windy = $el.windy(),
+
+    /* example to add items
+    setTimeout(function(){
+      
+      $el.prepend('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
+
+      // or:
+      // $el.append('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
+      
+      windy.update();
+
+    },2000)
+    */
+
+
+  },
+
+  setNavigation: function($element){
+
+    windy = $element.windy(),
     allownavnext = false,
     allownavprev = false;
 
@@ -130,20 +149,10 @@ var Flyers = {
       }
     }
 
-    /* example to add items
-    setTimeout(function(){
-      
-      $el.prepend('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
-
-      // or:
-      // $el.append('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
-      
-      windy.update();
-
-    },2000)
-    */
-
 
   }
+
+
+
 
 };

@@ -51,7 +51,7 @@ var Flyers = {
 
   // draw the items as desired
   drawItem: function(network, item){
-
+    console.log(item);
   },
 
 
@@ -111,23 +111,28 @@ var Flyers = {
 
   setNavigation: function($element){
 
-    windy = $element.windy(),
-    allownavnext = false,
+    var windy = $element.windy();
+    var allownavnext = false;
     allownavprev = false;
 
-    $( '#nav-prev' ).on( 'mousedown', function( event ) {
+
+    $( '#nav-prev' ).on( 'vmousedown', function( event ) {
+      event.preventDefault();
       allownavprev = true;
       navprev();
     })
-    .on( 'mouseup mouseleave', function( event ) {
+    .on( 'vmouseup vmouseleave', function( event ) {
+      event.preventDefault();
       allownavprev = false;
     });
 
-    $( '#nav-next' ).on( 'mousedown', function( event ) {
+    $( '#nav-next' ).on( 'vmousedown', function( event ) {
+      event.preventDefault();
       allownavnext = true;
       navnext();
     })
-    .on( 'mouseup mouseleave', function( event ) {
+    .on( 'vmouseup vmouseleave', function( event ) {
+      event.preventDefault();
       allownavnext = false;
     });
 

@@ -1,8 +1,17 @@
 @import url('normalize.css');
 
+body {
+    background-color: black;
+    color: white;
+}
+
+footer {
+    height:100px;
+}
+
 #wrapper {
     width: 300px;
-    max-width: 90%;
+    max-width: 80%;
     display:block;
     position:relative;
     margin:auto;
@@ -23,7 +32,8 @@
     margin:0;
     padding:0;
     font-family: Arial, serif;
-    background: #ddd url(../img/bg.jpg) repeat top left;
+    background-color: rgb(205, 178, 216);
+/*    background: #ddd url(../img/bg.jpg) repeat top left;*/
     font-weight: 400;
     font-size: 15px;
     line-height: 1.2em;
@@ -58,7 +68,7 @@
 #flyersDiv .info.text{
     height: 20%;
     overflow: scroll;
-    margin-bottom:1px;
+    padding-bottom:5px;
 }
 
 
@@ -167,6 +177,7 @@ ul.wi-container li.wi-move {
     text-indent: -9000px;
     cursor: pointer;
     border-radius: 50%;
+
     box-shadow: 0px 3px 2px 1px  rgba(0,0,0,0.5);
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -175,15 +186,16 @@ ul.wi-container li.wi-move {
     user-select: none;
     padding:0;
     position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 #flyersDiv #nav-prev{
   position: absolute;
   background: url(../img/carat-l-black.png) no-repeat 50% 50%;
+      background-color: white;
   background-size: 30% 30%;
   left: 10%;
 }
@@ -191,6 +203,7 @@ ul.wi-container li.wi-move {
 #flyersDiv #nav-next{
   position: absolute;
   background: url(../img/carat-r-black.png) no-repeat 50% 50%;
+      background-color: white;
   background-size: 30% 30%;
   right: 10%;
 }
@@ -218,18 +231,30 @@ ul.wi-container li.wi-move {
     display:none;
   }
 
+  footer{
+    display:none;
+  }
+
   #wrapper{
-    margin-top: 5%; 
+    margin-top: 100px; 
+    margin-bottom:100px;
   }
 
   #wrapper:before {
-    padding-top: 150%; 
+    padding-top: 175%; 
   }
 
   #flyersDiv ul.wi-container {
     margin-left: auto;
     margin-right: auto;
-}
+  }
+
   #flyersDiv nav {
     /*margin: 30px auto 5px auto;*/
+  }
+
+  #flyersDiv .info.text{
+    height: 16%;
+}
+
 }

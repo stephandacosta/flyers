@@ -58,31 +58,34 @@ var Flyers = {
   drawFlyers : function (data){
     console.log('flyers function');
     
-    var $imgList = $('<ul id="wi-el" class="wi-container"></ul>');
+    var $List = $('<ul id="wi-el" class="wi-container"></ul>');
 
     for (var i = 0 ; i < data.length ; i++){
 
-      var $imgItem = $('<li></li>').css("height","100%");
+      var $listItem = $('<li></li>').css("height","100%");
 
       // add image to list item
       var photo = data[i].image || data[i].thumb || data[i].profilePic;
-      var $img = $("<img />").attr({src: photo});
-      $imgItem.append($img);
+      // var $img = $("<img />").attr({src: photo});
+      var $imgWrapper = $('<div class="imgWrapper">')
+          .css('background-image','url(' + photo + ')');
+      // $imgWrapper.append($img);
+      $listItem.append($imgWrapper);
 
       // add contributor name to list item
-      $imgItem.append($('<h4>' + data[i].contribName + '</h4>'));
+      $listItem.append($('<h4>' + data[i].contribName + '</h4>'));
 
       // add text to list item
-      $imgItem.append($('<div class="info text"></div>')
+      $listItem.append($('<div class="info text"></div>')
       .append(data[i].textHtml));
 
       // add list item to unsorted list
-      $imgList.append($imgItem);
+      $List.append($listItem);
 
     }
 
     // add list to container
-    Flyers.$container.append($imgList);
+    Flyers.$container.append($List);
 
     // add navigation buttons to container
     $navig = $("<nav>");

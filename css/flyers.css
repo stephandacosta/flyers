@@ -2,8 +2,25 @@
 
 body {
 
-    background-color: lightgoldenrodyellow;
-    color: black;
+    background-color: #7F737B;
+    color: white;
+}
+
+.header {
+    height: 100px;
+background-color: black;
+margin: 0;
+padding: 0;
+border-bottom: solid 4px #FF68C7;
+vertical-align: bottom;
+}
+
+h1 {
+            /*background: #FF68C7;*/
+            color: #ededed;
+            text-align:center;
+            padding:0;
+            margin:0;
 }
 
 footer {
@@ -30,15 +47,17 @@ footer {
     position:absolute;
     top:0;
     left:0;
-    margin:0;
+    margin-top:15%;
     padding:0;
     font-family: Arial, serif;
-/*    background: #ddd url(../img/bg.jpg) repeat top left;*/
+    background: #CCB8C4;
     font-weight: 400;
     font-size: 15px;
     line-height: 1.2em;
     color: #333;
+    border-radius: 2%;
     -webkit-font-smoothing: antialiased;
+
 }
 
 #flyersDiv ul.wi-container {
@@ -60,14 +79,15 @@ footer {
 
 #flyersDiv .info.title {
     height: 10%;
-    overflow-x: scroll;
+    overflow-x: auto;
     padding:2px;
         border-bottom: 1px solid #f0f0f0;
 }
 
 #flyersDiv .info.text{
-    height: 20%;
-    overflow: scroll;
+/*    height: 20%;*/
+display:block;
+    overflow: auto;
     padding-bottom:5px;
 }
 
@@ -101,6 +121,7 @@ ul.wi-container li {
     background: #fff;
     padding: 5%;
     pointer-events: auto;
+    overflow:auto;
 }
 
 ul.wi-container li.wi-move {
@@ -134,6 +155,7 @@ ul.wi-container li.wi-move {
         border-bottom: 1px solid #f0f0f0;
 
 
+
 }
 
 
@@ -153,13 +175,21 @@ ul.wi-container li.wi-move {
     user-select: none;
 }
 
-#flyersDiv li img {
+#flyersDiv li .imgWrapper {
     display: block;
     height:69%;
     margin: 0 auto;
-    max-width: 100%;
+    width: 100%;
     box-shadow: 0 0 1px 1px rgba(255,255,255,0.6), 0 0 0 4px rgba(0,0,0,0.1);
+    /*padding-bottom: 100%;*/
+    background-position: center center;
+    background-size: cover;
+    background-color: black;
 }
+
+/*#flyersDiv li img {
+    width:100%;
+}*/
 
 #flyersDiv nav {
     position: relative;
@@ -169,14 +199,14 @@ ul.wi-container li.wi-move {
 }
 
 #flyersDiv nav div {
-    width: 30%;
+    width: 37%;
     height: 55%;
     margin: 22 4px;
 /*    float: left;*/
 /*    background: url(../img/nav.png) no-repeat 100% 0;*/
     text-indent: -9000px;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 10%;
 
     box-shadow: 0px 3px 2px 1px  rgba(0,0,0,0.5);
     -webkit-user-select: none;
@@ -196,16 +226,16 @@ ul.wi-container li.wi-move {
   position: absolute;
   background: url(../img/carat-l-black.png) no-repeat 50% 50%;
       background-color: white;
-  background-size: 30% 30%;
-  left: 10%;
+  background-size: 20% 20%;
+  left: 5%;
 }
 
 #flyersDiv #nav-next{
   position: absolute;
   background: url(../img/carat-r-black.png) no-repeat 50% 50%;
       background-color: white;
-  background-size: 30% 30%;
-  right: 10%;
+  background-size: 20% 20%;
+  right: 5%;
 }
 
 
@@ -227,13 +257,14 @@ ul.wi-container li.wi-move {
 
 @media only screen and (max-width: 400px) {
 
-  body h1{
-    display:none;
-  }
 
-  footer{
+  /*  .header {
     display:none;
-  }
+  }*/
+
+/*  footer{
+    display:none;
+  }*/
 
   #wrapper{
     margin-top: 100px; 
@@ -255,6 +286,6 @@ ul.wi-container li.wi-move {
 
   #flyersDiv .info.text{
     height: 16%;
-}
+  }
 
 }

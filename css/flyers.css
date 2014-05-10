@@ -87,7 +87,7 @@ footer {
 #flyersDiv .info.text{
 /*    height: 20%;*/
 display:block;
-    overflow: auto;
+/*    overflow: auto;*/
     padding-bottom:5px;
 }
 
@@ -270,6 +270,10 @@ ul.wi-container li.wi-move {
     margin-top: 100px; 
     margin-bottom:100px;
   }
+
+#flyersDiv li .imgWrapper {
+    height:70%;
+}
 
   #wrapper:before {
     padding-top: 175%; 

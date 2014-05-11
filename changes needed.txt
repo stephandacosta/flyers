@@ -1,3 +1,16 @@
+Most important:
+* Fix transition animation bug
+
+* Make images load as data comes in
+
+* Add hover / tap animation
+
+* add play button
+
+
+
+
+
 Done 
 Change the text area from overflow: scroll; to overflow: auto;. This will hide the scroll bars when they are not needed.
 
@@ -20,7 +33,7 @@ I like the border on the image. That works well.
 Kept
 I like the effect of the piece flying away.
 
-
+??
 I like the shadow behind the whole module. What if you were to reduce the blur on the drop shadow to give it more of a depth feel without having a drop shadow feel? Just a thought.
 
 Kept

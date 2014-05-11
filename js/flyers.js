@@ -13,9 +13,12 @@ normalize.css by Nicolas Gallagher: http://github.com/necolas/normalize.css
 var Flyers = {
   $container: $("body"),
 
+
   init: function($container){
     console.log('creating flying images');
     Flyers.$container = $container;
+    Flyers.layout();
+    Flyers.windy = $('#wi-el').windy();
     sentimentHub.on('Data', Flyers.onData);
     sentimentHub.on('Done', Flyers.onDataDone);
     sentimentHub.fetch();
@@ -23,68 +26,70 @@ var Flyers = {
 
   // Triggered when data for a particular network is available
   onData: function(network, data){
-
+    $.each(data, function(key, item){
+      Flyers.drawItem(network, item);
+      
+      // let the library know we have used this item
+      sentimentHub.markDataItemAsUsed(item);
+      
+      Flyers.playIfShared(item);
+    });
   },
 
   // Triggered when we are done fetching data
   onDataDone: function(data){
-    Flyers.drawFlyers(data);
   },
 
   playIfShared: function(item){
-  //  uncomment to allow video popup play
-  //   var contentId = $.cookie("vgvidid");
-  //   if (contentId && item.id == contentId){
-  //     ga_events.sboxShareReferral(item.network, item.id);
-  //     if (item.type != 'video'){
-  //       player.hidePlayerMessage();
-  //       player.play(item);
-  //       ga_events.shareReferral('content:'+item.network, item.id);
-  //       $.cookie("vgvidid", '', {
-  //         expires: 0,
-  //         domain: cookieDomain,
-  //         path: '/'
-  //       });
-  //     }
-  //   }
+   // uncomment to allow video popup play
+    var contentId = $.cookie("vgvidid");
+    if (contentId && item.id == contentId){
+      ga_events.sboxShareReferral(item.network, item.id);
+      if (item.type != 'video'){
+        player.hidePlayerMessage();
+        player.play(item);
+        ga_events.shareReferral('content:'+item.network, item.id);
+        $.cookie("vgvidid", '', {
+          expires: 0,
+          domain: cookieDomain,
+          path: '/'
+        });
+      }
+    }
   },
 
   // draw the items as desired
   drawItem: function(network, item){
-    console.log(item);
+    // console.log(item);
+
+    var $listItem = $('<li></li>').css("height","100%");
+
+    // add image to list item
+    var photo = item.image || item.thumb || item.profilePic;
+    // var $img = $("<img />").attr({src: photo});
+    var $imgWrapper = $('<div class="imgWrapper">')
+    .css('background-image','url(' + photo + ')');
+    // $imgWrapper.append($img);
+    $listItem.append($imgWrapper);
+
+    // add contributor name to list item
+    $listItem.append($('<h4>' + item.contribName + '</h4>'));
+
+    // add text to list item
+    $listItem.append($('<div class="info text"></div>')
+    .append(item.textHtml));
+
+    // add list item to unsorted list
+    $('#wi-el').append($listItem);
+
+    Flyers.windy.update();
+
   },
 
 
-  drawFlyers : function (data){
-    console.log('flyers function');
-    
+  layout: function(){
     var $List = $('<ul id="wi-el" class="wi-container"></ul>');
-
-    for (var i = 0 ; i < data.length ; i++){
-
-      var $listItem = $('<li></li>').css("height","100%");
-
-      // add image to list item
-      var photo = data[i].image || data[i].thumb || data[i].profilePic;
-      // var $img = $("<img />").attr({src: photo});
-      var $imgWrapper = $('<div class="imgWrapper">')
-          .css('background-image','url(' + photo + ')');
-      // $imgWrapper.append($img);
-      $listItem.append($imgWrapper);
-
-      // add contributor name to list item
-      $listItem.append($('<h4>' + data[i].contribName + '</h4>'));
-
-      // add text to list item
-      $listItem.append($('<div class="info text"></div>')
-      .append(data[i].textHtml));
-
-      // add list item to unsorted list
-      $List.append($listItem);
-
-    }
-
-    // add list to container
+        // add list to container
     Flyers.$container.append($List);
 
     // add navigation buttons to container
@@ -95,29 +100,14 @@ var Flyers = {
 
     Flyers.setNavigation($( '#wi-el' ));
 
-
-    /* example to add items
-    setTimeout(function(){
-      
-      $el.prepend('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
-
-      // or:
-      // $el.append('<li><img src="images/demo1/3.jpg" alt="image1"/><h4>Coco Loko</h4><p>Total bicycle rights in blog four loko raw denim ex, helvetica sapiente odio placeat.</p></li>');
-      
-      windy.update();
-
-    },2000)
-    */
-
-
   },
+
 
   setNavigation: function($element){
 
-    var windy = $element.windy();
+
     var allownavnext = false;
     allownavprev = false;
-
 
     $( '#nav-prev' ).on( 'vmousedown', function( event ) {
       event.preventDefault();
@@ -141,7 +131,7 @@ var Flyers = {
 
     function navnext() {
       if( allownavnext ) {
-        windy.next();
+        Flyers.windy.next();
         setTimeout( function() {  
           navnext();
         }, 150 );
@@ -150,17 +140,13 @@ var Flyers = {
     
     function navprev() {
       if( allownavprev ) {
-        windy.prev();
+        Flyers.windy.prev();
         setTimeout( function() {  
           navprev();
         }, 150 );
       }
     }
 
-
   }
-
-
-
 
 };

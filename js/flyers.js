@@ -12,6 +12,7 @@ normalize.css by Nicolas Gallagher: http://github.com/necolas/normalize.css
 
 var Flyers = {
   $container: $("body"),
+  firstCall : true,
 
 
   init: function($container){
@@ -27,8 +28,9 @@ var Flyers = {
   // Triggered when data for a particular network is available
   onData: function(network, data){
     $.each(data, function(key, item){
-      Flyers.drawItem(network, item);
-      
+      Flyers.drawItem(network, item, key);
+
+
       // let the library know we have used this item
       sentimentHub.markDataItemAsUsed(item);
       
@@ -59,7 +61,7 @@ var Flyers = {
   },
 
   // draw the items as desired
-  drawItem: function(network, item){
+  drawItem: function(network, item, key){
     // console.log(item);
 
     var $listItem = $('<li></li>').css("height","100%");
@@ -82,7 +84,12 @@ var Flyers = {
     // add list item to unsorted list
     $('#wi-el').append($listItem);
 
-    Flyers.windy.update();
+    if (key === 0 && Flyers.firstCall){
+      Flyers.windy = $('#wi-el').windy();
+      Flyers.firstCall = false;
+    } else {
+      Flyers.windy.update();
+    }
 
   },
 

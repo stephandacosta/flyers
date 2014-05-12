@@ -12,6 +12,7 @@ normalize.css by Nicolas Gallagher: http://github.com/necolas/normalize.css
 
 var Flyers = {
   $container: $("body"),
+  
   firstCall : true,
 
 
@@ -30,10 +31,9 @@ var Flyers = {
     $.each(data, function(key, item){
       Flyers.drawItem(network, item, key);
 
-
       // let the library know we have used this item
       sentimentHub.markDataItemAsUsed(item);
-      
+
       Flyers.playIfShared(item);
     });
   },
@@ -43,7 +43,6 @@ var Flyers = {
   },
 
   playIfShared: function(item){
-   // uncomment to allow video popup play
     var contentId = $.cookie("vgvidid");
     if (contentId && item.id == contentId){
       ga_events.sboxShareReferral(item.network, item.id);
@@ -62,16 +61,13 @@ var Flyers = {
 
   // draw the items as desired
   drawItem: function(network, item, key){
-    // console.log(item);
 
     var $listItem = $('<li></li>').css("height","100%");
 
     // add image to list item
     var photo = item.image || item.thumb || item.profilePic;
-    // var $img = $("<img />").attr({src: photo});
     var $imgWrapper = $('<div class="imgWrapper">')
     .css('background-image','url(' + photo + ')');
-    // $imgWrapper.append($img);
     $listItem.append($imgWrapper);
 
     // add contributor name to list item
@@ -96,7 +92,7 @@ var Flyers = {
 
   layout: function(){
     var $List = $('<ul id="wi-el" class="wi-container"></ul>');
-        // add list to container
+    // add list to container
     Flyers.$container.append($List);
 
     // add navigation buttons to container
@@ -111,8 +107,6 @@ var Flyers = {
 
 
   setNavigation: function($element){
-
-
     var allownavnext = false;
     allownavprev = false;
 

@@ -1,11 +1,10 @@
-Most important:
-* Fix transition animation bug
-
-* Make images load as data comes in
+Remaining tasks:
 
 * Add hover / tap animation
 
 * add play button
+
+* add video player
 
 
 

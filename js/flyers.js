@@ -61,7 +61,7 @@ var Flyers = {
 
   // draw the items as desired
   drawItem: function(network, item, key){
-
+    
     var $listItem = $('<li></li>').css("height","100%");
 
     // add image to list item
